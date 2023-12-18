@@ -165,3 +165,5 @@ data/*
 exp
 exp/*
 *.out
+wandb
+wandb/*
