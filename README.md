@@ -5,14 +5,14 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 
 - [x] fastspeech2-based generator
 - [x] discriminator group, including segment discriminators and detail discriminators
-- [] ConvFFT block
+- [ ] ConvFFT block
 
 ## Dataset and preparation
 
 - [x] opencpop
-- [] kiritan
-- [] m4singer
-- [] NUS48E
+- [ ] kiritan
+- [ ] m4singer
+- [ ] NUS48E
 
 ## Training
 
