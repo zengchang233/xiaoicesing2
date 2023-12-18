@@ -1,0 +1,26 @@
+audio_manifest: 'data/wav.scp'
+duration_manifest: 'data/aishell3/train/duration.txt'
+raw_text_manifest: 'data/aishell3/train/raw_text'
+spk_manifest: 'data/aishell3/train/utt2spk'
+f0_min_max: 'data/f0_min_max.npy'
+energy_min_max: 'data/energy_min_max.npy'
+
+n_fft: 1024
+n_mels: 120
+hop_length: 256
+win_length: 1024
+sampling_rate: 44100
+seg_size: 700
+fmin: 0.0
+fmax: 22050
+
+tts_cleaner_names: []
+use_phonemes: True
+eos: False
+
+pitch:
+  feature: "frame_level" # support 'phoneme_level' or 'frame_level'
+  normalization: True
+energy:
+  feature: "frame_level" # support 'phoneme_level' or 'frame_level'
+  normalization: True

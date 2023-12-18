@@ -1,0 +1,44 @@
+epochs: 800
+batch_size: 8
+grad_clip: 1.0
+num_workers: 8
+
+feat_loss_weight: [1.0, 1.0, 1.0]
+adv_g_loss_weight: [0.1, 0.1, 0.1]
+start_disc_steps: 5000
+
+g_optimizer: 'Adam'
+g_optimizer_args:
+  lr: 0.0001
+  betas: [0.9, 0.98]
+  eps: 0.000000001
+  weight_decay: 0.0
+
+g_scheduler: 'WarmupLR'
+g_scheduler_args:
+  warmup_steps: 4000
+  last_epoch: -1
+  
+d_optimizer: 'Adam'
+d_optimizer_args:
+  lr: 0.0001
+  betas: [0.9, 0.98]
+  eps: 0.000000001
+  weight_decay: 0.0
+
+d_scheduler: 'WarmupLR'
+d_scheduler_args:
+  warmup_steps: 4000
+  last_epoch: -1 
+
+wandb: True
+wandb_args:
+  project: 'svs'
+  group: 'xiaoicesing2'
+  job_type: 'opencpop'
+  name: 'warmup4k-disc5k'
+
+log_interval: 10
+save_interval: 200
+ckpt_clean: 10
+

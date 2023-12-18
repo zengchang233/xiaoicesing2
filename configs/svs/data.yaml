@@ -1,0 +1,30 @@
+audio_manifest: 'data/opencpop/train.scp'
+svs_manifest: 'data/opencpop/train.txt'
+spk_manifest: 'data/opencpop/utt2spk'
+f0_min_max: 'data/opencpop/f0_min_max.npy'
+f0_mean: 'data/opencpop/f0_mean.npy'
+f0_std: 'data/opencpop/f0_std.npy'
+energy_min_max: 'data/opencpop/energy_min_max.npy'
+energy_mean: 'data/opencpop/energy_mean.npy'
+energy_std: 'data/opencpop/energy_std.npy'
+phone_set: 'data/opencpop/phone_set.txt'
+
+n_fft: 1024
+n_mels: 120
+hop_length: 256
+win_length: 1024
+sampling_rate: 44100
+seg_size: 700
+fmin: 0.0
+fmax: 22050
+
+tts_cleaner_names: []
+use_phonemes: True
+eos: False
+
+pitch:
+  feature: "frame_level" # support 'phoneme_level' or 'frame_level'
+  normalization: True
+energy:
+  feature: "frame_level" # support 'phoneme_level' or 'frame_level'
+  normalization: True
