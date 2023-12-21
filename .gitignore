@@ -167,3 +167,4 @@ exp/*
 *.out
 wandb
 wandb/*
+.nfs*
