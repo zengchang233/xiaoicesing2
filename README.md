@@ -1,5 +1,5 @@
-# xiaoicesing2
-The source code for the paper XiaoiceSing2 (interspeech2023)
+# [xiaoicesing2](https://www.isca-speech.org/archive/interspeech_2023/chunhui23_interspeech.html)
+The source code for the paper [XiaoiceSing2](https://www.isca-speech.org/archive/interspeech_2023/chunhui23_interspeech.html) (interspeech2023)
 
 ## Implementation (developping)
 
