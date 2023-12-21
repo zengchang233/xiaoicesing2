@@ -18,10 +18,21 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 
 ./run.sh --start-stage 2 --stop-stage 2
 
-### Real and generated mel-spectrogram
+### Real and generated melspectrogram
 
 - Real
+
 ![real melspectrogram](pics/2085003136_145600.png "real melspectrogram")
+
+- before post processing
+
+![before melspectrogram](pics/before_2085003136_145600.png)
+
+- after post processing
+
+![after melspectrogram](pics/after_2085003136_145600.png)
+
+### L2 loss curve for melspectrogram
 
 ## Inference
 
