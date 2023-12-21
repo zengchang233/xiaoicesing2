@@ -22,17 +22,9 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 
 ### Real and generated melspectrogram (145600 training steps)
 
-- Real
+Real(left) before post-processing(middle) after post-processing(right)
 
-![real melspectrogram](pics/2085003136_145600.png "real melspectrogram")
-
-- before post-processing
-
-![before melspectrogram](pics/before_2085003136_145600.png)
-
-- after post-processing
-
-![after melspectrogram](pics/after_2085003136_145600.png)
+![real melspectrogram](pics/2085003136_145600.png "real melspectrogram") ![before melspectrogram](pics/before_2085003136_145600.png) ![after melspectrogram](pics/after_2085003136_145600.png)
 
 ### L2 loss curve for melspectrogram
 
