@@ -3,7 +3,7 @@ from torch.utils.data import Dataset
 import torch.nn.functional as F
 
 import sys
-sys.path.insert(0, '/home/smg/zengchang/code/xhs/acoustic')
+sys.path.insert(0, '/home/smg/zengchang/code/svs/xiaoicesing2')
 
 import torch
 from torch.utils.data import Dataset, DataLoader

@@ -284,6 +284,7 @@ def main(args):
             np.save(os.path.join(os.path.dirname(args.scp_file), 'f0_std.npy'), f0_std)
             f0_min_max = normalize(filelists, f0_mean, f0_std, feature = 'f0')
             np.save(os.path.join(os.path.dirname(args.scp_file), 'f0_min_max.npy'), f0_min_max)
+
         if args.energy:
             print("Calculating energy stats...")
             energy_mean = energy_scaler.mean_.reshape(1, -1)
