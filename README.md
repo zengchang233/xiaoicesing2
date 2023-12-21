@@ -18,6 +18,11 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 
 ./run.sh --start-stage 2 --stop-stage 2
 
+### Real and generated mel-spectrogram
+
+- Real
+![real melspectrogram](pics/2085003136_145600.png "real melspectrogram")
+
 ## Inference
 
 ./run.sh --start-stage 3 --stop-stage 3
