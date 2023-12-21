@@ -16,7 +16,9 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 
 ## Training
 
+```
 ./run.sh --start-stage 2 --stop-stage 2
+```
 
 ### Real and generated melspectrogram
 
@@ -36,4 +38,6 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 
 ## Inference
 
+```
 ./run.sh --start-stage 3 --stop-stage 3
+```
