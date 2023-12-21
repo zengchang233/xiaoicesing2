@@ -20,7 +20,7 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 ./run.sh --start-stage 2 --stop-stage 2
 ```
 
-### Real and generated melspectrogram
+### Real and generated melspectrogram (145600 training steps)
 
 - Real
 
