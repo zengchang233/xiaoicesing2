@@ -25,9 +25,9 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 Real(left) before post-processing(middle) after post-processing(right)
 
 <div style="display:inline-block">
-  <img src="pics/2085003136_145600.png" alt="real" width="100">
-  <img src="pics/before_2085003136_145600.png" alt="before" width="100">
-  <img src="pics/after_2085003136_145600.png" alt="after" width="100">
+  <img src="pics/2085003136_145600.png" alt="real" width="300">
+  <img src="pics/before_2085003136_145600.png" alt="before" width="300">
+  <img src="pics/after_2085003136_145600.png" alt="after" width="300">
 </div>
 <!-- ![real melspectrogram](pics/2085003136_145600.png "real melspectrogram") ![before melspectrogram](pics/before_2085003136_145600.png) ![after melspectrogram](pics/after_2085003136_145600.png) -->
 
