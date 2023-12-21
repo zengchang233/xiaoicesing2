@@ -29,17 +29,15 @@ Real(left) before post-processing(middle) after post-processing(right)
   <img src="pics/before_2085003136_145600.png" alt="before" width="250">
   <img src="pics/after_2085003136_145600.png" alt="after" width="250">
 </div>
-<!-- ![real melspectrogram](pics/2085003136_145600.png "real melspectrogram") ![before melspectrogram](pics/before_2085003136_145600.png) ![after melspectrogram](pics/after_2085003136_145600.png) -->
 
 ### L2 loss curve for melspectrogram
 
-- L2 loss before post-processing
+L2 loss before post-processing(left) L2 loss after post-processing(right)
 
-![L2 loss before](pics/before_mel_l2_loss.png)
-
-- L2 loss after post-processing
-
-![L2 loss after](pics/post_mel_l2_loss.png)
+<div style="display:inline-block">
+  <img src="pics/before_mel_l2_loss.png" alt="before" width="350">
+  <img src="pics/post_mel_l2_loss.png" alt="after" width="350">
+</div>
 
 ## Inference
 
