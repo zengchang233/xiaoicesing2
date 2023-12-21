@@ -1,7 +1,7 @@
 # xiaoicesing2
 The source code for the paper XiaoiceSing2 (interspeech2023)
 
-## Implementation
+## Implementation (developping)
 
 - [x] fastspeech2-based generator
 - [x] discriminator group, including segment discriminators and detail discriminators
