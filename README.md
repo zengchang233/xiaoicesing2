@@ -26,15 +26,23 @@ The source code for the paper XiaoiceSing2 (interspeech2023)
 
 ![real melspectrogram](pics/2085003136_145600.png "real melspectrogram")
 
-- before post processing
+- before post-processing
 
 ![before melspectrogram](pics/before_2085003136_145600.png)
 
-- after post processing
+- after post-processing
 
 ![after melspectrogram](pics/after_2085003136_145600.png)
 
 ### L2 loss curve for melspectrogram
+
+- L2 loss before post-processing
+
+![L2 loss before](pics/before_mel_l2_loss.png)
+
+- L2 loss after post-processing
+
+![L2 loss after](pics/post_mel_l2_loss.png)
 
 ## Inference
 
