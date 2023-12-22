@@ -14,6 +14,13 @@ The source code for the paper [XiaoiceSing2](https://www.isca-speech.org/archive
 - [ ] m4singer
 - [ ] NUS48E
 
+Kaldi style preparation
+
+- wav.scp
+- utt2spk
+- spk2utt
+- text
+
 ## Training
 
 ```
