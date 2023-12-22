@@ -271,7 +271,7 @@ class Trainer():
                 wandb_log_dict['train/' + k] = v
             if self.train_configs['wandb']:
                 wandb.log(wandb_log_dict)
-        return output, postnet_output   
+        return output, postnet_output
 
     def print_msg(self, epoch, step, report_keys):
         if self.total_step % self.train_configs['log_interval'] == 0:

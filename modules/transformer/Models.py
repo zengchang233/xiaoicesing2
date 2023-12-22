@@ -3,8 +3,8 @@ import torch.nn as nn
 import numpy as np
 
 try:
-    import modules_v2.transformer.Constants as Constants
-    from modules_v2.transformer.Layers import FFTBlock
+    import modules.transformer.Constants as Constants
+    from modules.transformer.Layers import FFTBlock
     from dataset.texts.symbols import symbols
 except:
     import sys
@@ -12,8 +12,8 @@ except:
     filepath = '/'.join(os.path.dirname(os.path.abspath(__file__)).split('/')[:-2])
     print(filepath)
     sys.path.insert(0, filepath)
-    import modules_v2.transformer.Constants as Constants
-    from modules_v2.transformer.Layers import FFTBlock
+    import modules.transformer.Constants as Constants
+    from modules.transformer.Layers import FFTBlock
     from dataset.texts.symbols import symbols
 
 

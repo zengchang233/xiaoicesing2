@@ -133,20 +133,20 @@ class Trainer():
     def train(self):
         for epoch in range(self.start_epoch, self.epochs + 1, 1):
             self.train_epoch(epoch)
-            # self.g_scheduler.step()
     
     def train_epoch(self, epoch):
         self.total_loss = 0.0
         for batch_idx, data in enumerate(self.trainloader):
             output, postnet_output = self.train_batch(data, epoch, batch_idx)
-            self.train_batch(data, epoch, batch_idx)
+            self.g_scheduler.step()
+
             if self.rank == 0 and self.total_step % self.train_configs['save_interval'] == 0:
                 ckpt_path = os.path.join(self.args.exp_name, 'models', 'G_{}.pth'.format(self.total_step))
                 save_checkpoint(
                         self.models[0],
                         self.g_optimizer,
                         self.g_scheduler,
-                        self.g_optimizer.rate(),
+                        self.g_scheduler.get_lr()[0],
                         epoch,
                         ckpt_path
                 )
@@ -186,13 +186,13 @@ class Trainer():
         if self.rank == 0:
             self.print_msg(epoch, step, report_keys) #, accuracy.item())
             wandb_log_dict = {
-                    'train/avg loss': self.total_loss / (step + 1),
-                    'train/lr': self.g_optimizer.rate()
+                    'train/avg_g_loss': self.total_loss / (step + 1),
+                    'train/g_lr': self.g_scheduler.get_lr()[0]
                 }
             for k, v in report_keys.items():
                 wandb_log_dict['train/' + k] = v
             wandb.log(wandb_log_dict)
-        return output, postnet_output 
+        return output, postnet_output
     
     def print_msg(self, epoch, step, report_keys):
         if self.total_step % self.train_configs['log_interval'] == 0:
@@ -224,20 +224,28 @@ def main(rank, args, configs):
                 world_size = args.num_gpus,
                 rank = rank
         )
-        
-    # wandb initialization
-    wandb_configs = vars(args)
-    for config in configs:
-        wandb_configs.update(config)
+
     data_configs, model_configs, train_configs = configs
-    wandb.init(
-            **train_configs['wandb'],
+    args.exp_name = train_configs['wandb_args']['group'] + '-' + \
+                    train_configs['wandb_args']['job_type'] + '-' + \
+                    train_configs['wandb_args']['name']
+    args.exp_name = os.path.join('exp', args.exp_name)
+
+    # wandb initialization
+    if train_configs['wandb']:
+        wandb_configs = vars(args)
+        for config in configs:
+            wandb_configs.update(config)
+        wandb.init(
+            **train_configs['wandb_args'],
             config = wandb_configs
-    )
+        )
     
     trainer = Trainer(rank, args, data_configs, model_configs, train_configs)
     trainer.train()
-    wandb.finish()
+
+    if train_configs['wandb']:
+        wandb.finish()
 
 if __name__ == "__main__":
     args = parse_args()
