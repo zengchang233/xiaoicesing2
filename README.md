@@ -1,6 +1,8 @@
 # [xiaoicesing2](https://www.isca-speech.org/archive/interspeech_2023/chunhui23_interspeech.html)
 The source code for the paper [XiaoiceSing2](https://www.isca-speech.org/archive/interspeech_2023/chunhui23_interspeech.html) (interspeech2023)
 
+[Demo page](https://wavelandspeech.github.io/xiaoice2/)
+
 ## Implementation (developping)
 
 - [x] fastspeech2-based generator
