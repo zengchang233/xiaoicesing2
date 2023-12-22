@@ -21,6 +21,10 @@ Kaldi style preparation
 - spk2utt
 - text
 
+```
+./run.sh --start-stage 1 --stop-stage 1 # extract melspectrogram, f0, energy, and statistical value
+```
+
 ## Training
 
 ```
