@@ -3,6 +3,7 @@ import yaml
 import argparse
 import math
 import shutil
+import logging
 
 import torch
 import torch.nn as nn
@@ -25,7 +26,6 @@ from pyutils import (
 )
 
 import wandb
-import logging
 
 logging.basicConfig(format = "%(asctime)s-%(filename)s[line:%(lineno)d]-%(levelname)s: %(message)s", level = logging.INFO)
 
@@ -79,21 +79,24 @@ class Trainer():
         self.train_configs = train_configs
         self.args = args
 
-        self.g_optimizer = getattr(
-            torch.optim, train_configs['g_optimizer']
-        )(self.models[0].parameters(), **train_configs['g_optimizer_args'])
-        
-        self.g_scheduler = getattr(
-            pyutils.scheduler, train_configs['g_scheduler']
-        )(self.g_optimizer, **train_configs['g_scheduler_args'])
-        
-        self.d_optimizer = getattr(
-            torch.optim, train_configs['d_optimizer']
-        )(self.models[1].parameters(), **train_configs['d_optimizer_args'])
-        
-        self.d_scheduler = getattr(
-            pyutils.scheduler, train_configs['d_scheduler']
-        )(self.d_optimizer, **train_configs['d_scheduler_args'])
+        try:
+            self.g_optimizer = getattr(
+                torch.optim, train_configs['g_optimizer']
+            )(self.models[0].parameters(), **train_configs['g_optimizer_args'])
+            
+            self.g_scheduler = getattr(
+                pyutils.scheduler, train_configs['g_scheduler']
+            )(self.g_optimizer, **train_configs['g_scheduler_args'])
+            
+            self.d_optimizer = getattr(
+                torch.optim, train_configs['d_optimizer']
+            )(self.models[1].parameters(), **train_configs['d_optimizer_args'])
+            
+            self.d_scheduler = getattr(
+                pyutils.scheduler, train_configs['d_scheduler']
+            )(self.d_optimizer, **train_configs['d_scheduler_args'])
+        except:
+            raise NotImplementedError("Unknown optimizer or scheduler")
 
         self.fs2loss = FastSpeech2Loss(data_configs)
         self.feat_loss = FeatLoss(train_configs['feat_loss_weight'])

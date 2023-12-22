@@ -2,32 +2,27 @@ import os
 import yaml
 import argparse
 import math
+import logging
 
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-import torch.optim as optim
-import torch.optim.lr_scheduler as lr_scheduler
 import torch.multiprocessing as mp
-
-import sys
-sys.path.insert(0, '/home/smg/zengchang/code/acoustic_v2')
 
 from dataset import SVSDataset, SVSCollate
 from models import Xiaoice2 as Generator
-#  from dataset.texts import symbols
+from loss import FastSpeech2Loss
+import pyutils
 from pyutils import (
     load_checkpoint,
     save_checkpoint,
     clean_checkpoints,
     latest_checkpoint_path,
     melspecplot,
-    get_logger,
-    get_g_opt
+    get_logger
 )
 
 import wandb
-import logging
 
 logging.basicConfig(format = "%(asctime)s-%(filename)s[line:%(lineno)d]-%(levelname)s: %(message)s", level = logging.INFO)
 
@@ -50,7 +45,7 @@ class Trainer():
         )
         
         model_configs['generator']['transformer']['encoder']['n_src_vocab'] = trainset.get_phone_number() + 1
-        model_configs['generator']['spk_num'] = 1 #trainset.get_spk_number()
+        model_configs['generator']['spk_num'] = trainset.get_spk_number()
         
         if args.num_gpus > 1:
             self.models = (
@@ -58,9 +53,8 @@ class Trainer():
                     Generator(
                         data_configs, 
                         model_configs['generator']
-                    ).to(self.device), 
-                    device_ids = [rank]# ,
-                    # find_unused_parameters = True
+                    ).to(self.device),
+                    device_ids = [rank]
                 ),
             )
         else:
@@ -75,42 +69,19 @@ class Trainer():
         self.train_configs = train_configs
         self.args = args
 
-        if train_configs['optimizer'] == 'sgd':
-            self.g_optimizer = optim.SGD(
-                    self.models[0].parameters(),
-                    lr = train_configs['lr'],
-                    momentum = train_configs['momentum'],
-                    weight_decay = train_configs['weight_decay']
-            )
-        elif train_configs['optimizer'] == 'adam':
-            self.g_optimizer = optim.Adam(
-                    self.models[0].parameters(),
-                    lr = train_configs['lr'],
-                    betas = (train_configs['beta1'], train_configs['beta2'])
-            )
-        else:
-            self.g_optimizer = get_g_opt(
-                    self.models[0],
-                    d_model = model_configs['generator']['transformer']['encoder']['d_model'],
-                    warmup = train_configs['warmup_steps'],
-                    factor = train_configs['lr']
-            )
+        try:
+            self.g_optimizer = getattr(
+                torch.optim, train_configs['g_optimizer']
+            )(self.models[0].parameters(), **train_configs['g_optimizer_args'])
             
-        if train_configs['optimizer'] == 'noam':
-            self.g_scheduler = lr_scheduler.StepLR(
-                    self.g_optimizer.optimizer,
-                    step_size = train_configs['step_size'],
-                    gamma = train_configs['gamma']
-            )
-        elif train_configs['lr_scheduler'] == 'step':
-            self.g_scheduler = lr_scheduler.StepLR(
-                    self.g_optimizer,
-                    step_size = train_configs['step_size'],
-                    gamma = train_configs['gamma']
-            )
-        else:
-            raise ValueError("Only support step LR scheduler")
+            self.g_scheduler = getattr(
+                pyutils.scheduler, train_configs['g_scheduler']
+            )(self.g_optimizer, **train_configs['g_scheduler_args'])
+        except:
+            raise NotImplementedError("Unknown optimizer or scheduler")
         
+        self.fs2loss = FastSpeech2Loss(data_configs)
+
         if self.rank == 0:
             self._make_exp_dir()
             self.logger = get_logger(os.path.join(self.args.exp_name, 'logs/train.log'))

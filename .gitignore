@@ -168,3 +168,4 @@ exp/*
 wandb
 wandb/*
 .nfs*
+local_run.sh
