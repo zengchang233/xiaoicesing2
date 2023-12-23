@@ -35,12 +35,12 @@ Kaldi style preparation
 
 ### Real and generated melspectrogram (145600 training steps)
 
-Real(left) before post-processing(middle) after post-processing(right)
+Real(left) XiaoiceSing(middle) XiaoiceSing2(right)
 
 <div style="display:inline-block">
   <img src="pics/2085003136_145600.png" alt="real" width="250">
-  <img src="pics/before_2085003136_145600.png" alt="before" width="250">
-  <img src="pics/after_2085003136_145600.png" alt="after" width="250">
+  <img src="pics/xs1_before_2085003136_145600.png" alt="xs1" width="250">
+  <img src="pics/before_2085003136_145600.png" alt="xs2" width="250">
 </div>
 
 ### L2 loss curve for melspectrogram
