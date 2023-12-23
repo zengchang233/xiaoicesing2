@@ -11,10 +11,11 @@ The source code for the paper [XiaoiceSing2](https://www.isca-speech.org/archive
 
 ## Dataset and preparation
 
-- [x] opencpop
-- [ ] kiritan
-- [ ] m4singer
-- [ ] NUS48E
+- [x] opencpop ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png)
+- [ ] kiritan ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png)
+- [ ] CSD ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png)
+- [ ] m4singer ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png)
+- [ ] NUS48E 
 
 Kaldi style preparation
 
@@ -35,7 +36,7 @@ Kaldi style preparation
 
 ### Real and generated melspectrogram (145600 training steps)
 
-Real(left) XiaoiceSing(middle) XiaoiceSing2(right)
+    Real(left)         XiaoiceSing(middle)         XiaoiceSing2(right)
 
 <div style="display:inline-block">
   <img src="pics/2085003136_145600.png" alt="real" width="250">
