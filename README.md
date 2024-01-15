@@ -3,6 +3,10 @@ The source code for the paper [XiaoiceSing2](https://www.isca-speech.org/archive
 
 [Demo page](https://wavelandspeech.github.io/xiaoice2/)
 
+## Notice
+
+I am busy with job-hunting now. I will update other modules, including the [HiFi-WaveGAN](https://arxiv.org/abs/2210.12740) after my final decision.
+
 ## Implementation (developping)
 
 - [x] fastspeech2-based generator
